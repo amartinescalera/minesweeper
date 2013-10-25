@@ -1,0 +1,5 @@
+The Rules for MinesWeeper:
+	* We have two actors: board and square.
+	* If we open a square with a mine, the game will be finished.
+	* If we open a square without a mine but with a mine in the neighbour, the number of mines in the neighbour will be indicated.
+	* If we open a square without a mine and there isn't mines in the neighbour, the neighboor square will be open.
