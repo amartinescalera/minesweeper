@@ -45,17 +45,17 @@
                 <form:form method="POST" ACTION="play.htm" >
                     <table class="nostyle">
                         <tr>
-                            <td>Filas:</td>
+                            <td><label for="rowNumber">Filas:</label></td>
                             <td>
-                                <input type="text" size="3" name="rowNumber" class="input-text" value="<c:out value="${minesweeper.rowNumber}" />" />
+                                <input type="text" size="3" name="rowNumber" id="rowNumber" class="input-text" value="<c:out value="${minesweeper.rowNumber}" />" />
                             </td>
-                            <td>Columnas:</td>
+                            <td> <label for="colNumber">Columnas:</label></td>
                             <td>
-                                <input type="text" size="3" name="colNumber" class="input-text" value="<c:out value="${minesweeper.colNumber}" />" />
+                                <input type="text" size="3" name="colNumber" id="colNumber" class="input-text" value="<c:out value="${minesweeper.colNumber}" />" />
                             </td>
-                            <td>Minas:</td>
+                            <td><label for="numberOfMines">Minas:</label></td>
                             <td>
-                                <input type="text" size="3" name="numberOfMines" class="input-text" value="<c:out value="${minesweeper.numberOfMines}" />"/>
+                                <input type="text" size="3" name="numberOfMines" id="numberOfMines" class="input-text" value="<c:out value="${minesweeper.numberOfMines}" />"/>
                             </td>
                             <td>
                                 <input type="submit" class="input-submit" value="Play" />
@@ -68,11 +68,11 @@
 
 
             <table>
-                <c:forEach begin="1" end="${minesweeper.rowNumber}" >
+                <c:forEach var="rowData" items="${minesweeper.myBoard}">
                     <tr>
-                        <c:forEach begin="1" end="${minesweeper.colNumber}" >
+                        <c:forEach var="cellData" items="${rowData}" >
                             <td style="width: 20px; height: 20px">
-
+                              <img src="${cellData.status.icon}" alt="cell Image" />
                             </td>
                         </c:forEach>
                     </tr>
