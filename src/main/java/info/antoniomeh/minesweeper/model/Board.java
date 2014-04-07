@@ -275,6 +275,14 @@ public class Board {
         this.numberOfCells = calculateNumberOfCells();
     }
 
+    public Cell[][] getMyBoard() {
+        return myBoard;
+    }
+
+    public void setMyBoard(Cell[][] myBoard) {
+        this.myBoard = myBoard;
+    }
+
     public Integer getNumberOfMines() {
         return numberOfMines;
     }
