@@ -1,4 +1,3 @@
-package info.antoniomeh.minesweeper.service;
 
 import info.antoniomeh.minesweeper.model.Cell;
 import info.antoniomeh.minesweeper.model.Board;

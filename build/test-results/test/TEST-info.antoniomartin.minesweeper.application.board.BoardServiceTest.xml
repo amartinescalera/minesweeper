@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="info.antoniomartin.minesweeper.application.board.BoardServiceTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2021-10-22T07:27:08" hostname="Erytheia" time="1.305">
+  <properties/>
+  <testcase name="should_generate_board_when_create_new_board_with_wrong_data()" classname="info.antoniomartin.minesweeper.application.board.BoardServiceTest" time="1.305"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

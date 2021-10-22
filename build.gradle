@@ -1,6 +1,6 @@
 buildscript {
     ext {
-        springBootVersion = "2.4.5"
+        springBootVersion = "2.5.5"
     }
     repositories {
         mavenLocal()
@@ -28,9 +28,9 @@ repositories {
 }
 
 ext {
-    springBootVersion = "2.4.5"
+    springBootVersion = "2.5.5"
     springMockMvc = "4.4.0"
-    lombokVersion = "1.18.18"
+    lombokVersion = "1.18.22"
 }
 
 dependencies {
@@ -45,6 +45,10 @@ dependencies {
 
     testImplementation "org.springframework.boot:spring-boot-starter-test:${springBootVersion}"
     testImplementation "io.rest-assured:spring-mock-mvc:${springMockMvc}"
+}
+
+test {
+    useJUnitPlatform()
 }
 
 group = 'info.antoniomartin'
