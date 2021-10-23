@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="info.antoniomartin.minesweeper.domain.BoardTest" tests="2" skipped="0" failures="0" errors="0" timestamp="2021-10-23T18:57:13" hostname="Erytheia" time="0.002">
+  <properties/>
+  <testcase name="should_initialize_board_when_start()" classname="info.antoniomartin.minesweeper.domain.BoardTest" time="0.001"/>
+  <testcase name="should_initialize_board_when_start_with_not_value()" classname="info.antoniomartin.minesweeper.domain.BoardTest" time="0.0"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

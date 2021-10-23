@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="info.antoniomartin.minesweeper.domain.UserTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2021-10-23T18:57:13" hostname="Erytheia" time="0.002">
+  <properties/>
+  <testcase name="should_initialize_user_when_start()" classname="info.antoniomartin.minesweeper.domain.UserTest" time="0.002"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

@@ -1,6 +1,5 @@
 package info.antoniomartin.minesweeper.application.board;
 
-import info.antoniomartin.minesweeper.domain.Board;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -25,7 +24,7 @@ class BoardServiceTest {
         int numberOfMines = 30;
 
         //when
-        Board board = boardService.createBoard(rows, cols, numberOfMines);
+        BoardResponse board = boardService.createBoard(rows, cols, numberOfMines);
 
         //then
         assertThat(board.getColNumber()).isEqualTo(cols);
@@ -41,7 +40,7 @@ class BoardServiceTest {
         int numberOfMines = 0;
 
         //when
-        Board board = boardService.createBoard(rows, cols, numberOfMines);
+        BoardResponse board = boardService.createBoard(rows, cols, numberOfMines);
 
         //then
         assertThat(board.getColNumber()).isEqualTo(cols);

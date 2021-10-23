@@ -33,10 +33,10 @@
 
     <Loggers>
         <!-- LOG everything at INFO level -->
-        <Logger name="info.antoniomartin" level="INFO" />
-        <Logger name="org.springframework" level="ERROR" />
+        <Logger name="info.antoniomartin" level="WARN" />
+        <Logger name="org.springframework" level="WARN" />
 
-        <Root level="INFO">
+        <Root level="WARN">
             <AppenderRef ref="JSON_FILE" />
             <AppenderRef ref="Console" />
         </Root>

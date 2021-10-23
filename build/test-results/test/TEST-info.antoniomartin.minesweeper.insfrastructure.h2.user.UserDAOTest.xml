@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="info.antoniomartin.minesweeper.insfrastructure.h2.user.UserDAOTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2021-10-23T18:57:13" hostname="Erytheia" time="0.138">
+  <properties/>
+  <testcase name="should_returnUserEntity_when_getUserList()" classname="info.antoniomartin.minesweeper.insfrastructure.h2.user.UserDAOTest" time="0.138"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

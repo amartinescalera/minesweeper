@@ -7,11 +7,11 @@ import lombok.Getter;
 @Getter
 public class Cell {
 
-    private final Boolean mine;
+    private final boolean mine;
     private final CellType type;
 
-    private final Integer numNeighbour;
-    private final Integer rowPosition;
-    private final Integer columnPosition;
-    private final Integer minesInMyNeighbour;
+    private final int numNeighbour;
+    private final int rowPosition;
+    private final int columnPosition;
+    private final int minesInMyNeighbour;
 }

@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="info.antoniomartin.minesweeper.application.board.BoardServiceTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2021-10-22T07:27:08" hostname="Erytheia" time="1.305">
+<testsuite name="info.antoniomartin.minesweeper.application.board.BoardServiceTest" tests="2" skipped="0" failures="0" errors="0" timestamp="2021-10-23T18:57:12" hostname="Erytheia" time="0.609">
   <properties/>
-  <testcase name="should_generate_board_when_create_new_board_with_wrong_data()" classname="info.antoniomartin.minesweeper.application.board.BoardServiceTest" time="1.305"/>
+  <testcase name="should_generate_board_when_create_new_board()" classname="info.antoniomartin.minesweeper.application.board.BoardServiceTest" time="0.607"/>
+  <testcase name="should_generate_board_when_create_new_board_with_wrong_data()" classname="info.antoniomartin.minesweeper.application.board.BoardServiceTest" time="0.002"/>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>

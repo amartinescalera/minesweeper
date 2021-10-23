@@ -4,18 +4,28 @@ import info.antoniomartin.minesweeper.domain.Board;
 import info.antoniomartin.minesweeper.domain.Cell;
 import info.antoniomartin.minesweeper.domain.CellType;
 import lombok.AllArgsConstructor;
+import org.springframework.stereotype.Service;
 
 import java.util.Random;
 
 @AllArgsConstructor
+@Service
 public class BoardService {
 
-    public Board createBoard(int row, int col, int numberOfMines) {
-        return Board.builder()
+    public BoardResponse createBoard(int row, int col, int numberOfMines) {
+        Board newBoard = Board.builder()
             .rowNumber(row)
             .colNumber(col)
             .numberOfMines(numberOfMines)
             .myBoard(initialize(row, col, numberOfMines))
+            .build();
+
+        return BoardResponse.builder()
+            .rowNumber(newBoard.getRowNumber())
+            .colNumber(newBoard.getColNumber())
+            .numberOfMines(numberOfMines)
+            .numberOfCells(newBoard.numberOfCells())
+            .myBoard(newBoard.getMyBoard())
             .build();
     }
 

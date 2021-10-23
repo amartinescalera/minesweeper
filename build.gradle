@@ -36,9 +36,10 @@ ext {
 dependencies {
     implementation "org.springframework.boot:spring-boot-starter-data-jpa:${springBootVersion}"
     implementation "org.springframework.boot:spring-boot-starter-web:${springBootVersion}"
+    implementation "org.hibernate:hibernate-core:5.5.8.Final"
 
     implementation "org.projectlombok:lombok:${lombokVersion}"
-    annotationProcessor 'org.projectlombok:lombok'
+    annotationProcessor "org.projectlombok:lombok"
     implementation "javax.inject:javax.inject:1"
 
     runtimeOnly     "com.h2database:h2:1.4.200"
@@ -53,7 +54,7 @@ test {
 
 group = 'info.antoniomartin'
 version = '0.0.1-SNAPSHOT'
-description = 'springDemo'
+description = 'MinesWeeper'
 sourceCompatibility = '11'
 
 tasks.withType(JavaCompile) {
