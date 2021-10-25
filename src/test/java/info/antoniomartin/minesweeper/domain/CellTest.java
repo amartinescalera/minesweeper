@@ -14,7 +14,6 @@ class CellTest {
 
     @Test
     void I_have_a_mine() {
-
         Cell cell = Cell.builder().mine(true).build();
         assertTrue(cell.isMine());
     }
@@ -69,5 +68,13 @@ class CellTest {
         Cell cell = Cell.builder().mine(true).type(CellType.CELL_FLAG).build();
         assertThat(cell.getType().name()).isEqualTo(CellType.CELL_FLAG.name());
         assertTrue(cell.isMine());
+    }
+
+    @Test
+    void num_of_neighborhood() {
+        Cell cell = Cell.builder().mine(false).type(CellType.CELL_FLAG).minesInMyNeighbour(4).build();
+        assertThat(cell.getType().name()).isEqualTo(CellType.CELL_FLAG.name());
+        assertFalse(cell.isMine());
+        assertThat(cell.getMinesInMyNeighbour()).isEqualTo(4);
     }
 } 

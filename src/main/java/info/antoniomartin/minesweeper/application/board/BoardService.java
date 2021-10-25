@@ -3,14 +3,18 @@ package info.antoniomartin.minesweeper.application.board;
 import info.antoniomartin.minesweeper.domain.Board;
 import info.antoniomartin.minesweeper.domain.Cell;
 import info.antoniomartin.minesweeper.domain.CellType;
+import info.antoniomartin.minesweeper.insfrastructure.cache.Cache;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.Objects;
 import java.util.Random;
 
 @AllArgsConstructor
 @Service
 public class BoardService {
+
+    private final Cache myBoard;
 
     public BoardResponse createBoard(int row, int col, int numberOfMines) {
         Board newBoard = Board.builder()
@@ -27,6 +31,19 @@ public class BoardService {
             .numberOfCells(newBoard.numberOfCells())
             .myBoard(newBoard.getMyBoard())
             .build();
+    }
+
+    public BoardResponse openCell(final int row, final int col) {
+        Cell cell = getCell(row, col);
+        if (Objects.nonNull(cell) && cell.getType().equals(CellType.CELL_CLOSE)) {
+            Cell.builder().build();
+        } else {
+            return null;
+        }
+    }
+
+    private Cell getCell(final int row, final int col) {
+        return myBoard.getTheBoard().getMyBoard()[row][col];
     }
 
     private Cell[][] initialize(int row, int col, int numberOfMines) {

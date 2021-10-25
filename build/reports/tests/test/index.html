@@ -20,13 +20,13 @@
 <tr>
 <td>
 <div class="infoBox" id="tests">
-<div class="counter">17</div>
+<div class="counter">1</div>
 <p>tests</p>
 </div>
 </td>
 <td>
 <div class="infoBox" id="failures">
-<div class="counter">0</div>
+<div class="counter">1</div>
 <p>failures</p>
 </div>
 </td>
@@ -38,7 +38,7 @@
 </td>
 <td>
 <div class="infoBox" id="duration">
-<div class="counter">1.101s</div>
+<div class="counter">0.427s</div>
 <p>duration</p>
 </div>
 </td>
@@ -47,8 +47,8 @@
 </div>
 </td>
 <td>
-<div class="infoBox success" id="successRate">
-<div class="percent">100%</div>
+<div class="infoBox failures" id="successRate">
+<div class="percent">0%</div>
 <p>successful</p>
 </div>
 </td>
@@ -58,13 +58,25 @@
 <div id="tabs">
 <ul class="tabLinks">
 <li>
-<a href="#tab0">Packages</a>
+<a href="#tab0">Failed tests</a>
 </li>
 <li>
-<a href="#tab1">Classes</a>
+<a href="#tab1">Packages</a>
+</li>
+<li>
+<a href="#tab2">Classes</a>
 </li>
 </ul>
 <div id="tab0" class="tab">
+<h2>Failed tests</h2>
+<ul class="linkList">
+<li>
+<a href="classes/info.antoniomartin.minesweeper.application.board.BoardServiceTest.html">BoardServiceTest</a>.
+<a href="classes/info.antoniomartin.minesweeper.application.board.BoardServiceTest.html#should_open_a_cell_with_was_opened()">Open a Cell Opened</a>
+</li>
+</ul>
+</div>
+<div id="tab1" class="tab">
 <h2>Packages</h2>
 <table>
 <thead>
@@ -79,59 +91,19 @@
 </thead>
 <tbody>
 <tr>
-<td class="success">
+<td class="failures">
 <a href="packages/info.antoniomartin.minesweeper.application.board.html">info.antoniomartin.minesweeper.application.board</a>
 </td>
-<td>2</td>
-<td>0</td>
-<td>0</td>
-<td>0.609s</td>
-<td class="success">100%</td>
-</tr>
-<tr>
-<td class="success">
-<a href="packages/info.antoniomartin.minesweeper.application.user.html">info.antoniomartin.minesweeper.application.user</a>
-</td>
+<td>1</td>
 <td>1</td>
 <td>0</td>
-<td>0</td>
-<td>0.199s</td>
-<td class="success">100%</td>
-</tr>
-<tr>
-<td class="success">
-<a href="packages/info.antoniomartin.minesweeper.domain.html">info.antoniomartin.minesweeper.domain</a>
-</td>
-<td>12</td>
-<td>0</td>
-<td>0</td>
-<td>0.012s</td>
-<td class="success">100%</td>
-</tr>
-<tr>
-<td class="success">
-<a href="packages/info.antoniomartin.minesweeper.insfrastructure.h2.user.html">info.antoniomartin.minesweeper.insfrastructure.h2.user</a>
-</td>
-<td>1</td>
-<td>0</td>
-<td>0</td>
-<td>0.138s</td>
-<td class="success">100%</td>
-</tr>
-<tr>
-<td class="success">
-<a href="packages/info.antoniomartin.minesweeper.insfrastructure.rest.user.getall.html">info.antoniomartin.minesweeper.insfrastructure.rest.user.getall</a>
-</td>
-<td>1</td>
-<td>0</td>
-<td>0</td>
-<td>0.143s</td>
-<td class="success">100%</td>
+<td>0.427s</td>
+<td class="failures">0%</td>
 </tr>
 </tbody>
 </table>
 </div>
-<div id="tab1" class="tab">
+<div id="tab2" class="tab">
 <h2>Classes</h2>
 <table>
 <thead>
@@ -146,74 +118,14 @@
 </thead>
 <tbody>
 <tr>
-<td class="success">
+<td class="failures">
 <a href="classes/info.antoniomartin.minesweeper.application.board.BoardServiceTest.html">info.antoniomartin.minesweeper.application.board.BoardServiceTest</a>
 </td>
-<td>2</td>
-<td>0</td>
-<td>0</td>
-<td>0.609s</td>
-<td class="success">100%</td>
-</tr>
-<tr>
-<td class="success">
-<a href="classes/info.antoniomartin.minesweeper.application.user.UserServiceTest.html">info.antoniomartin.minesweeper.application.user.UserServiceTest</a>
-</td>
+<td>1</td>
 <td>1</td>
 <td>0</td>
-<td>0</td>
-<td>0.199s</td>
-<td class="success">100%</td>
-</tr>
-<tr>
-<td class="success">
-<a href="classes/info.antoniomartin.minesweeper.domain.BoardTest.html">info.antoniomartin.minesweeper.domain.BoardTest</a>
-</td>
-<td>2</td>
-<td>0</td>
-<td>0</td>
-<td>0.001s</td>
-<td class="success">100%</td>
-</tr>
-<tr>
-<td class="success">
-<a href="classes/info.antoniomartin.minesweeper.domain.CellTest.html">info.antoniomartin.minesweeper.domain.CellTest</a>
-</td>
-<td>9</td>
-<td>0</td>
-<td>0</td>
-<td>0.009s</td>
-<td class="success">100%</td>
-</tr>
-<tr>
-<td class="success">
-<a href="classes/info.antoniomartin.minesweeper.domain.UserTest.html">info.antoniomartin.minesweeper.domain.UserTest</a>
-</td>
-<td>1</td>
-<td>0</td>
-<td>0</td>
-<td>0.002s</td>
-<td class="success">100%</td>
-</tr>
-<tr>
-<td class="success">
-<a href="classes/info.antoniomartin.minesweeper.insfrastructure.h2.user.UserDAOTest.html">info.antoniomartin.minesweeper.insfrastructure.h2.user.UserDAOTest</a>
-</td>
-<td>1</td>
-<td>0</td>
-<td>0</td>
-<td>0.138s</td>
-<td class="success">100%</td>
-</tr>
-<tr>
-<td class="success">
-<a href="classes/info.antoniomartin.minesweeper.insfrastructure.rest.user.getall.UserControllerTest.html">info.antoniomartin.minesweeper.insfrastructure.rest.user.getall.UserControllerTest</a>
-</td>
-<td>1</td>
-<td>0</td>
-<td>0</td>
-<td>0.143s</td>
-<td class="success">100%</td>
+<td>0.427s</td>
+<td class="failures">0%</td>
 </tr>
 </tbody>
 </table>
@@ -226,7 +138,7 @@
 <input id="line-wrapping-toggle" type="checkbox" autocomplete="off"/>
 </label>
 </div>Generated by 
-<a href="http://www.gradle.org">Gradle 7.1</a> at 23 Oct 2021, 20:57:14</p>
+<a href="http://www.gradle.org">Gradle 7.1</a> at 23 Oct 2021, 23:19:58</p>
 </div>
 </div>
 </body>

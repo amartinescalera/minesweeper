@@ -1,1 +1,0 @@
-	Ð20:57:13.894 [Test worker] INFO info.antoniomartin.minesweeper.insfrastructure.rest.user.getall.UserController - [UserResponse(id=a, name=Mock A, email=a@a.es), UserResponse(id=b, name=Mock B, email=b@b.es)]
