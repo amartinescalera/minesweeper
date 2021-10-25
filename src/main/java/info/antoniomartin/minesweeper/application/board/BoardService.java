@@ -37,6 +37,7 @@ public class BoardService {
         Cell cell = getCell(row, col);
         if (Objects.nonNull(cell) && cell.getType().equals(CellType.CELL_CLOSE)) {
             Cell.builder().build();
+return null;
         } else {
             return null;
         }
