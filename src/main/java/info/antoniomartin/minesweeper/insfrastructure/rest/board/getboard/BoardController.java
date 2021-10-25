@@ -1,8 +1,8 @@
 package info.antoniomartin.minesweeper.insfrastructure.rest.board.getboard;
 
 import info.antoniomartin.minesweeper.application.board.BoardResponse;
-import info.antoniomartin.minesweeper.application.board.BoardService;
-import info.antoniomartin.minesweeper.insfrastructure.cache.Cache;
+import info.antoniomartin.minesweeper.application.board.CreateBoard;
+import info.antoniomartin.minesweeper.application.board.GetActiveBoard;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -16,29 +16,17 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class BoardController {
 
-    private final Cache myBoard;
-    private final BoardService boardService;
+    private final CreateBoard createBoard;
+    private final GetActiveBoard activeBoard;
+    private static final String USER_ID = "userId";
 
     @GetMapping("/board/{rows}/{cells}/{numberOfMines}")
     public ResponseEntity<BoardResponse> getBoard(@PathVariable int rows, @PathVariable int cells, @PathVariable int numberOfMines) {
-        if (myBoard.getTheBoard() == null) {
-            BoardResponse response = boardService.createBoard(rows, cells, numberOfMines);
-            myBoard.setTheBoard(response);
-        }
-
-        return ResponseEntity.ok(myBoard.getTheBoard());
+        return ResponseEntity.ok(createBoard.create(rows, cells, numberOfMines));
     }
 
     @GetMapping("/board")
     public ResponseEntity<BoardResponse> getBoard() {
-        return ResponseEntity.ok(getActiveBoard());
-    }
-
-    private BoardResponse getActiveBoard() {
-        if (myBoard.getTheBoard() != null) {
-            return myBoard.getTheBoard();
-        } else {
-            return BoardResponse.builder().build();
-        }
+        return ResponseEntity.ok(activeBoard.getActiveBoard());
     }
 }

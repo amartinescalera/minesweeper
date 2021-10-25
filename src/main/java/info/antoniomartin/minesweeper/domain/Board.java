@@ -11,7 +11,6 @@ import java.util.Objects;
 public class Board {
     private final Integer rowNumber;
     private final Integer colNumber;
-    private final Integer numberOfMines;
     private final Cell[][] myBoard;
 
     public int numberOfCells() {

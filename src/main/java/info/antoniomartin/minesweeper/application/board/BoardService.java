@@ -1,6 +1,5 @@
 package info.antoniomartin.minesweeper.application.board;
 
-import info.antoniomartin.minesweeper.domain.Board;
 import info.antoniomartin.minesweeper.domain.Cell;
 import info.antoniomartin.minesweeper.domain.CellType;
 import info.antoniomartin.minesweeper.insfrastructure.cache.Cache;
@@ -12,48 +11,69 @@ import java.util.Random;
 
 @AllArgsConstructor
 @Service
-public class BoardService {
+public class BoardService implements CreateBoard, GetActiveBoard {
 
-    private final Cache myBoard;
+    private static final String USER_ID = "userId";
+    private static final Random randomTrueFalse = new Random();
 
-    public BoardResponse createBoard(int row, int col, int numberOfMines) {
-        Board newBoard = Board.builder()
-            .rowNumber(row)
-            .colNumber(col)
-            .numberOfMines(numberOfMines)
-            .myBoard(initialize(row, col, numberOfMines))
-            .build();
+    private final Cache cache;
 
-        return BoardResponse.builder()
-            .rowNumber(newBoard.getRowNumber())
-            .colNumber(newBoard.getColNumber())
-            .numberOfMines(numberOfMines)
-            .numberOfCells(newBoard.numberOfCells())
-            .myBoard(newBoard.getMyBoard())
-            .build();
+    @Override
+    public BoardResponse create(int row, int col, int numberOfMines) {
+        return getBoardResponse(createBoard(row, col, numberOfMines));
     }
 
-    public BoardResponse openCell(final int row, final int col) {
-        Cell cell = getCell(row, col);
-        if (Objects.nonNull(cell) && cell.getType().equals(CellType.CELL_CLOSE)) {
-            Cell.builder().build();
-return null;
+    @Override
+    public BoardResponse getActiveBoard() {
+        if (cache.hasBoard(USER_ID)) {
+            return getBoardResponse(cache.getUserBoard(USER_ID));
         } else {
-            return null;
+            return BoardResponse.builder().build();
         }
     }
 
+    private Cell[][] createBoard(int row, int col, int numberOfMines) {
+        if (cache.hasBoard(USER_ID)) {
+            return cache.getUserBoard(USER_ID);
+        } else {
+            return initialize(row, col, numberOfMines);
+        }
+    }
+
+    public Cell[][] openCell(final int row, final int col) {
+        Cell cell = getCell(row, col);
+        if (Objects.nonNull(cell) && cell.getType().equals(CellType.CELL_CLOSE)) {
+            if (cell.isMine()) {
+                Cell.builder()
+                    .mine(cell.isMine())
+                    .minesInMyNeighbour(cell.getMinesInMyNeighbour())
+                    .type(CellType.CELL_MINE)
+                    .build();
+            } else {
+                Cell.builder()
+                    .mine(cell.isMine())
+                    .minesInMyNeighbour(cell.getMinesInMyNeighbour())
+                    .type(CellType.CELL_OPEN)
+                    .build();
+            }
+        }
+        return cache.getUserBoard(USER_ID);
+    }
+
     private Cell getCell(final int row, final int col) {
-        return myBoard.getTheBoard().getMyBoard()[row][col];
+        Cell[][] board = cache.getUserBoard(USER_ID);
+        if (row < board.length && col < board[0].length) {
+            return board[row][col];
+        }
+        return null;
     }
 
     private Cell[][] initialize(int row, int col, int numberOfMines) {
-        Random randomTrueFalse = new Random();
         Cell[][] boardGameCell = new Cell[row][col];
-        for(int i=0; i<row; i++) {
-            for (int j=0; j<col; j++) {
+        for (int i = 0; i < row; i++) {
+            for (int j = 0; j < col; j++) {
                 if (randomTrueFalse.nextBoolean() && numberOfMines > 0) {
-                    numberOfMines --;
+                    numberOfMines--;
                     boardGameCell[i][j] = Cell.builder().mine(true).type(CellType.CELL_CLOSE).build();
                 } else {
                     boardGameCell[i][j] = Cell.builder().mine(false).type(CellType.CELL_CLOSE).build();
@@ -62,5 +82,18 @@ return null;
             }
         }
         return boardGameCell;
+    }
+
+    private BoardResponse getBoardResponse(Cell[][] cells) {
+        if (cells.length <= 0 || cells[0].length <= 0) {
+            return BoardResponse.builder().build();
+        } else {
+            return BoardResponse.builder()
+                .rowNumber(cells.length)
+                .colNumber(cells[0].length)
+                .myBoard(cells)
+                .build();
+        }
+
     }
 }

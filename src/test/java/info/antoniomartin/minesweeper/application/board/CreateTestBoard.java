@@ -3,7 +3,7 @@ package info.antoniomartin.minesweeper.application.board;
 import info.antoniomartin.minesweeper.domain.Cell;
 import info.antoniomartin.minesweeper.domain.CellType;
 
-public class CreateBoard {
+public class CreateTestBoard {
 
     /*
         * 2 1 B O
