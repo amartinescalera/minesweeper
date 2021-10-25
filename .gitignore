@@ -1,4 +1,11 @@
-target/
-MinesWeeper.iws
-MinesWeeper.ipr
-MinesWeeper.iml
+build/
+.gradle/
+
+*.DS_Store
+
+.idea/
+*.hprof
+**/*.iml
+**/*.log
+**/*.bak
+classes/
