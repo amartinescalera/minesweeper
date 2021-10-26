@@ -1,6 +1,5 @@
 package info.antoniomartin.minesweeper.insfrastructure.cache;
 
-import info.antoniomartin.minesweeper.application.shared.exceptions.UserNotFoundException;
 import info.antoniomartin.minesweeper.domain.Cell;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;

@@ -13,7 +13,7 @@ import java.util.Random;
 @Service
 public class BoardService implements CreateBoard, GetActiveBoard {
 
-    private static final String USER_ID = "userId";
+    private static final String USER_ID = "tester";
     private static final Random randomTrueFalse = new Random();
 
     private final Cache cache;
@@ -43,21 +43,31 @@ public class BoardService implements CreateBoard, GetActiveBoard {
     public Cell[][] openCell(final int row, final int col) {
         Cell cell = getCell(row, col);
         if (Objects.nonNull(cell) && cell.getType().equals(CellType.CELL_CLOSE)) {
-            if (cell.isMine()) {
-                Cell.builder()
-                    .mine(cell.isMine())
-                    .minesInMyNeighbour(cell.getMinesInMyNeighbour())
-                    .type(CellType.CELL_MINE)
-                    .build();
-            } else {
-                Cell.builder()
-                    .mine(cell.isMine())
-                    .minesInMyNeighbour(cell.getMinesInMyNeighbour())
-                    .type(CellType.CELL_OPEN)
-                    .build();
-            }
+            updateBoard(openCell(cell), row, col);
         }
         return cache.getUserBoard(USER_ID);
+    }
+
+    private void updateBoard(final Cell cellOpened, final int row, final int col) {
+        final Cell[][] board = cache.getUserBoard(USER_ID);
+        board[row][col] = cellOpened;
+        cache.updateBoard(USER_ID, board);
+    }
+
+    private Cell openCell(final Cell cell) {
+        if (cell.isMine()) {
+            return Cell.builder()
+                .mine(cell.isMine())
+                .minesInMyNeighbour(cell.getMinesInMyNeighbour())
+                .type(CellType.CELL_MINE)
+                .build();
+        } else {
+            return Cell.builder()
+                .mine(cell.isMine())
+                .minesInMyNeighbour(cell.getMinesInMyNeighbour())
+                .type(CellType.CELL_OPEN)
+                .build();
+        }
     }
 
     private Cell getCell(final int row, final int col) {
