@@ -13,45 +13,49 @@ import java.util.Random;
 @Service
 public class BoardService implements CreateBoard, GetActiveBoard {
 
-    private static final String USER_ID = "tester";
     private static final Random randomTrueFalse = new Random();
-
     private final Cache cache;
 
     @Override
-    public BoardResponse create(int row, int col, int numberOfMines) {
-        return getBoardResponse(createBoard(row, col, numberOfMines));
+    public BoardResponse create(String userId, int row, int col, int numberOfMines) {
+        return getBoardResponse(createBoard(userId, row, col, numberOfMines));
     }
 
     @Override
-    public BoardResponse getActiveBoard() {
-        if (cache.hasBoard(USER_ID)) {
-            return getBoardResponse(cache.getUserBoard(USER_ID));
+    public BoardResponse getActiveBoard(String userId) {
+        if (cache.hasBoard(userId)) {
+            return getBoardResponse(cache.getUserBoard(userId));
         } else {
             return BoardResponse.builder().build();
         }
     }
 
-    private Cell[][] createBoard(int row, int col, int numberOfMines) {
-        if (cache.hasBoard(USER_ID)) {
-            return cache.getUserBoard(USER_ID);
+    public Cell[][] openCell(final String userId, final int row, final int col) {
+        Cell cell = getCell(userId, row, col);
+        if (Objects.nonNull(cell) && cell.getType().equals(CellType.CELL_CLOSE)) {
+            updateBoard(userId, openCell(cell), row, col);
+        }
+        return cache.getUserBoard(userId);
+    }
+
+    private Cell[][] createBoard(final String userId,
+                                 final int row,
+                                 final int col,
+                                 final int numberOfMines) {
+        if (cache.hasBoard(userId)) {
+            return cache.getUserBoard(userId);
         } else {
             return initialize(row, col, numberOfMines);
         }
     }
 
-    public Cell[][] openCell(final int row, final int col) {
-        Cell cell = getCell(row, col);
-        if (Objects.nonNull(cell) && cell.getType().equals(CellType.CELL_CLOSE)) {
-            updateBoard(openCell(cell), row, col);
-        }
-        return cache.getUserBoard(USER_ID);
-    }
-
-    private void updateBoard(final Cell cellOpened, final int row, final int col) {
-        final Cell[][] board = cache.getUserBoard(USER_ID);
+    private void updateBoard(final String userId,
+                             final Cell cellOpened,
+                             final int row,
+                             final int col) {
+        final Cell[][] board = cache.getUserBoard(userId);
         board[row][col] = cellOpened;
-        cache.updateBoard(USER_ID, board);
+        cache.updateBoard(userId, board);
     }
 
     private Cell openCell(final Cell cell) {
@@ -70,20 +74,21 @@ public class BoardService implements CreateBoard, GetActiveBoard {
         }
     }
 
-    private Cell getCell(final int row, final int col) {
-        Cell[][] board = cache.getUserBoard(USER_ID);
+    private Cell getCell(final String userId, final int row, final int col) {
+        Cell[][] board = cache.getUserBoard(userId);
         if (row < board.length && col < board[0].length) {
             return board[row][col];
         }
         return null;
     }
 
-    private Cell[][] initialize(int row, int col, int numberOfMines) {
-        Cell[][] boardGameCell = new Cell[row][col];
+    private Cell[][] initialize(final int row, final int col, final int numberOfMines) {
+        int numberOfMinesUpdated = numberOfMines;
+        final Cell[][] boardGameCell = new Cell[row][col];
         for (int i = 0; i < row; i++) {
             for (int j = 0; j < col; j++) {
-                if (randomTrueFalse.nextBoolean() && numberOfMines > 0) {
-                    numberOfMines--;
+                if (randomTrueFalse.nextBoolean() && numberOfMinesUpdated > 0) {
+                    numberOfMinesUpdated--;
                     boardGameCell[i][j] = Cell.builder().mine(true).type(CellType.CELL_CLOSE).build();
                 } else {
                     boardGameCell[i][j] = Cell.builder().mine(false).type(CellType.CELL_CLOSE).build();
@@ -94,7 +99,7 @@ public class BoardService implements CreateBoard, GetActiveBoard {
         return boardGameCell;
     }
 
-    private BoardResponse getBoardResponse(Cell[][] cells) {
+    private BoardResponse getBoardResponse(final Cell[][] cells) {
         if (cells.length <= 0 || cells[0].length <= 0) {
             return BoardResponse.builder().build();
         } else {

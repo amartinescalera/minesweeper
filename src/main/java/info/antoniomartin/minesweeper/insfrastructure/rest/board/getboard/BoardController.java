@@ -22,11 +22,11 @@ public class BoardController {
 
     @GetMapping("/board/{rows}/{cells}/{numberOfMines}")
     public ResponseEntity<BoardResponse> getBoard(@PathVariable int rows, @PathVariable int cells, @PathVariable int numberOfMines) {
-        return ResponseEntity.ok(createBoard.create(rows, cells, numberOfMines));
+        return ResponseEntity.ok(createBoard.create(USER_ID, rows, cells, numberOfMines));
     }
 
     @GetMapping("/board")
     public ResponseEntity<BoardResponse> getBoard() {
-        return ResponseEntity.ok(activeBoard.getActiveBoard());
+        return ResponseEntity.ok(activeBoard.getActiveBoard(USER_ID));
     }
 }
