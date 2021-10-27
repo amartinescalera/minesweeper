@@ -3,6 +3,7 @@ package info.antoniomartin.minesweeper.application.user;
 import info.antoniomartin.minesweeper.insfrastructure.h2.user.GetAllUserDAO;
 import info.antoniomartin.minesweeper.insfrastructure.h2.user.UserEntity;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
@@ -15,6 +16,7 @@ import static org.assertj.core.api.Assertions.tuple;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
+@DisplayName("Testing User Service")
 class UserServiceTest {
 
     @Mock
@@ -28,6 +30,7 @@ class UserServiceTest {
     }
 
     @Test
+    @DisplayName("Return the user Response when get All")
     void should_returnUserResponse_when_getAll() {
         //given
         List<UserEntity> userResponseMock = List.of(
@@ -46,5 +49,19 @@ class UserServiceTest {
                 tuple("TestUser1", "TestName1", "test1@test"),
                 tuple("TestUser2", "TestName2", "test2@test")
             );
+    }
+
+    @Test
+    @DisplayName("Return the user Response empty")
+    void should_returnUserResponseEmpty_when_getAll() {
+        //given
+        List<UserEntity> userResponseMock = List.of();
+        when(dao.getUserList()).thenReturn(userResponseMock);
+
+        //when
+        List<UserResponse> userResponseList = userService.getAll();
+
+        //then
+        assertThat(userResponseList).isEmpty();
     }
 }

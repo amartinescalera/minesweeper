@@ -27,6 +27,7 @@ class BoardTest {
         assertThat(board.getRowNumber()).isEqualTo(rowNumber);
         assertThat(board.getColNumber()).isEqualTo(colNumber);
         assertThat(board.numberOfCells()).isEqualTo(numberOfCells);
+        assertThat(board.getMyBoard()).isNotEmpty();
     }
 
     @Test
